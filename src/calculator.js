@@ -14,45 +14,41 @@ const Calculator = () => {
 
     // this function first convert inputs into number then check validations of the input field if there is issue in input show set error using hook usestate and if there is no isuue run the function result 
     const handleoperator = (e) => {
-        var num1 = parseInt(input);
-        var num2 = parseInt(input2);
+        
 
-        if (num1 == "") {
+        if (input == "") {
             seterror("Num 1 empty")
+            setResult("")
         }
 
-        else if (!/^[-+]?\d*\.?\d+$/.test(num1)) {
+      else if (!/^[-+]?\d*\.?\d+$/.test(input)) {
             seterror("Num 1 Is only be integer , positive no. negative no. or floating no.")
+            setResult("")
+        }
+        else{
 
-        }
-        else {
-            result()
-        }
+            if (input2 == "") {
+                seterror("Num 2 empty")
+                setResult("")
+            }
+            else if (!/^[-+]?\d*\.?\d+$/.test(input2)) {
+                seterror("Num 2 Is only be integer , positive no. negative no. or floating no.")
+                setResult("")
+    
+            }
+            else{
+                seterror("")
+                result()
 
-        if (num2 == "") {
-            seterror("Num 2 empty")
-        }
-        else if (!/^[-+]?\d*\.?\d+$/.test(num2)) {
-            seterror("Num 2 Is only be integer , positive no. negative no. or floating no.")
-
-        }
-        else {
-            result()
-        }
-
-        if (num1 == "" && num2 == "") {
-            seterror("Num 1 & Num 2 empty")
-        }
-        else if (!/^[-+]?\d*\.?\d+$/.test(num2, num1)) {
-            seterror("Num 1 & Num 2 Is only be integer , positive no. negative no. or floating no.")
-
-        }
-        else {
-            result()
+            }
         }
 
-// in this function check the operator clicked and set the result accordingly
+        
+        // in this function check the operator clicked and set the result accordingly
         function result() {
+            var num1 = parseInt(input);
+            var num2 = parseInt(input2);
+
             const operator = e.target.innerText;
             if (operator === "+") {
                 setResult(num1 + num2)
@@ -100,7 +96,7 @@ const Calculator = () => {
         {/* this div shows the error and results if there is any error so error show through condition rendering and if there is no error then result shows */}
         <div id="error-error-div">
             <div className="error">
-                { error ? `Error :  ${error ? error : ''}` : ""  }
+                { error ? `Error :  ${error ? error : ''}` : "" }
             </div>
 
 
